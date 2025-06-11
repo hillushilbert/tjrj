@@ -1,0 +1,67 @@
+# services declaration.
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-tjrj
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - 8086:80
+    volumes:
+      - ./src:/app
+      - ./docker/configs/nginx:/etc/nginx/conf.d
+    networks:
+      - tjrj
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.15'
+        reservations:
+          memory: 100M
+  #App  
+  app:
+    build:
+      args:
+        user: tjrj
+        uid: 1000
+      context: .
+      dockerfile: ./docker/dockerfiles/fpm.Dockerfile
+    image: hillushilbert/tjrj:php-fpm
+    container_name: app-tjrj
+    volumes:
+      - ./src:/app
+      - ./docker/configs/php/php.ini:/usr/local/etc/php/php.ini
+    networks:
+    - tjrj
+  
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - tjrj-mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=tjrj
+    networks:
+      - tjrj
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    restart: unless-stopped
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+    networks:
+      - tjrj   
+  
+networks:
+  tjrj:
+    driver: bridge
+
+volumes:
+  tjrj-mysql-data:
+  # tjrj-rabbit-data:
