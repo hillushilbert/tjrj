@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveAssuntoRequest;
 use App\Http\Requests\SaveAutorRequest;
 use App\Models\Assunto;
 use Illuminate\Http\Request;
@@ -55,7 +56,7 @@ class AssuntoController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function store(SaveAutorRequest $request): RedirectResponse
+    public function store(SaveAssuntoRequest $request): RedirectResponse
     {
         $assunto = Assunto::create($request->validated());
 
@@ -65,7 +66,7 @@ class AssuntoController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(SaveAutorRequest $request, $id): RedirectResponse
+    public function update(SaveAssuntoRequest $request, $id): RedirectResponse
     {
         $assunto = Assunto::findOrFail($id);
         $assunto->update($request->validated());

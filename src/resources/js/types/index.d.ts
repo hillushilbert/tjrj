@@ -25,6 +25,10 @@ export interface Autor {
     CodAu: number,
     Nome: string,
 }
+export interface Assunto {
+    codAs: number,
+    Descricao: string,
+}
 
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
