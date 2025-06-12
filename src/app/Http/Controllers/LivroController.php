@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Livro;
 use App\Http\Requests\SaveLivroRequest;
+use App\Http\Resources\LivroResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Support\Facades\Redirect;
@@ -48,8 +50,9 @@ class LivroController extends Controller
      */
     public function edit(Request $request, Livro $livro): Response
     {
+        $livroResource = new LivroResource($livro);
         return Inertia::render('Livro/Edit', [
-            'livro' => $livro,
+            'data' => $livroResource,
         ]);
     }
 
@@ -58,7 +61,20 @@ class LivroController extends Controller
      */
     public function store(SaveLivroRequest $request): RedirectResponse
     {
-        $livro = Livro::create($request->validated());
+        try
+        {
+            DB::beginTransaction();
+            $livro = Livro::create($request->validated());
+
+            $livro->autores()->detach();
+            $livro->autores()->attach($request->autores);
+            DB::commit();
+        }
+        catch(\Exception $e)
+        {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['Titulo'=>[$e->getMessage()]]);
+        }
 
         return Redirect::route('livros.index');
     }
@@ -68,8 +84,21 @@ class LivroController extends Controller
      */
     public function update(SaveLivroRequest $request, $id): RedirectResponse
     {
-        $livro = Livro::findOrFail($id);
-        $livro->update($request->validated());
+        try
+        {
+            DB::beginTransaction();
+            $livro = Livro::findOrFail($id);
+            $livro->update($request->validated());
+
+            $livro->autores()->detach();
+            $livro->autores()->attach($request->autores);
+            DB::commit();
+        }
+        catch(\Exception $e)
+        {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['Titulo'=>[$e->getMessage()]]);
+        }
 
         return Redirect::route('livros.index');
     }
@@ -79,8 +108,21 @@ class LivroController extends Controller
      */
     public function destroy(Request $request, $id): RedirectResponse
     {
-        Livro::destroy($id);
+        try
+        {
+            DB::beginTransaction();
+            $livro = Livro::findOrFail($id);
+            $livro->autores()->detach();
+            Livro::destroy($id);
+            DB::commit();
+        }
+        catch(\Exception $e)
+        {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['Titulo'=>[$e->getMessage()]]);
+        }
 
         return Redirect::route('livros.index');
     }
+    
 }

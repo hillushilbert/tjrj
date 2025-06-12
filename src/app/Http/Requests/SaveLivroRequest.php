@@ -25,9 +25,11 @@ class SaveLivroRequest extends FormRequest
             //
             'Titulo' => ['required','string','max:40'],
             'Editora' => ['required','string','max:40'],
-            'Edicao' => ['required','string','max:10'],
+            'Edicao' => ['required','numeric','max:9999'],
             'AnoPublicacao' => ['required','numeric','max:'.date('Y')],
             'Valor' => ['required','numeric','max:999999999'],
+            'autores' => ['required','array'],
+            'assuntos' => ['required','array'],
         ];
     }
 }

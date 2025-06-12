@@ -29,6 +29,16 @@ export interface Assunto {
     codAs: number,
     Descricao: string,
 }
+export interface Livro {
+    Codl: number,
+    Titulo: string,
+    Editora: string,
+    Edicao: number,
+    AnoPublicacao: string,
+    Valor: number,
+    autores: string[];
+    assuntos: string[];
+}
 
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,

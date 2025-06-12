@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveAutorRequest;
+use App\Http\Resources\SelectAutorResource;
 use App\Models\Autor;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -82,5 +84,13 @@ class AutorController extends Controller
         Autor::destroy($id);
 
         return Redirect::route('autores.index');
+    }
+
+    public function autocomplete(Request $request): JsonResponse
+    {
+        $lista = Autor::get();
+
+        $collection = SelectAutorResource::collection($lista);
+        return response()->json($collection);
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AssuntoController;
 use App\Http\Controllers\AutorController;
+use App\Http\Controllers\LivroController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/autores',AutorController::class);
     Route::resource('/assuntos',AssuntoController::class);
+    Route::resource('/livros',LivroController::class);
+
+    Route::get('/autores/autocomplete/list', [AutorController::class, 'autocomplete'])->name('autores.autocomplete.list');
 });
 
 require __DIR__.'/auth.php';
