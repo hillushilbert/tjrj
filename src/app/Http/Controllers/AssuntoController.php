@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveAssuntoRequest;
-use App\Http\Requests\SaveAutorRequest;
+use App\Http\Resources\SelectAssuntoResource;
 use App\Models\Assunto;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -58,7 +59,7 @@ class AssuntoController extends Controller
      */
     public function store(SaveAssuntoRequest $request): RedirectResponse
     {
-        $assunto = Assunto::create($request->validated());
+        Assunto::create($request->validated());
 
         return Redirect::route('assuntos.index');
     }
@@ -82,5 +83,13 @@ class AssuntoController extends Controller
         Assunto::destroy($id);
 
         return Redirect::route('assuntos.index');
+    }
+
+    public function autocomplete(Request $request): JsonResponse
+    {
+        $lista = Assunto::get();
+
+        $collection = SelectAssuntoResource::collection($lista);
+        return response()->json($collection);
     }
 }

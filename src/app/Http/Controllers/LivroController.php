@@ -68,6 +68,10 @@ class LivroController extends Controller
 
             $livro->autores()->detach();
             $livro->autores()->attach($request->autores);
+
+            $livro->assuntos()->detach();
+            $livro->assuntos()->attach($request->assuntos);
+
             DB::commit();
         }
         catch(\Exception $e)
@@ -92,6 +96,10 @@ class LivroController extends Controller
 
             $livro->autores()->detach();
             $livro->autores()->attach($request->autores);
+
+            $livro->assuntos()->detach();
+            $livro->assuntos()->attach($request->assuntos);
+            
             DB::commit();
         }
         catch(\Exception $e)
@@ -113,6 +121,7 @@ class LivroController extends Controller
             DB::beginTransaction();
             $livro = Livro::findOrFail($id);
             $livro->autores()->detach();
+            $livro->assuntos()->detach();
             Livro::destroy($id);
             DB::commit();
         }

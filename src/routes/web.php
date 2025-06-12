@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/livros',LivroController::class);
 
     Route::get('/autores/autocomplete/list', [AutorController::class, 'autocomplete'])->name('autores.autocomplete.list');
+    Route::get('/assuntos/autocomplete/list', [AssuntoController::class, 'autocomplete'])->name('assuntos.autocomplete.list');
 });
 
 require __DIR__.'/auth.php';

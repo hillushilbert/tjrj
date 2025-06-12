@@ -21,7 +21,8 @@ class LivroResource extends JsonResource
             'Edicao' => $this->Edicao,
             'AnoPublicacao' => $this->AnoPublicacao,
             'Valor' => $this->Valor,
-            'autores' => $this->autores()->pluck('Autor_CodAu')
+            'autores' => $this->autores()->pluck('Autor_CodAu'),
+            'assuntos' => $this->assuntos()->pluck('Assunto_codAs')
         ];
     }
 }

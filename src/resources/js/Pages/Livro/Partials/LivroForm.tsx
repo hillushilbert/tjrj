@@ -141,10 +141,10 @@ export default function LivroForm({ livro,  modo = '' }: { livro: Livro, modo?: 
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                    <InputLabel htmlFor="Titulo" value="Título" />
 
                     <TextInput
-                        id="name"
+                        id="Titulo"
                         className="mt-1 block w-full"
                         value={data.Titulo}
                         onChange={(e) => setData('Titulo', e.target.value)}
@@ -225,7 +225,7 @@ export default function LivroForm({ livro,  modo = '' }: { livro: Livro, modo?: 
                 </div>
                 <div className="mt-6 flex flex-col md:flex-row items-center">
                     <div className="w-full md:w-2/4">
-                        <div className="relative w-full">
+                        <div className="relative w-full pr-1">
 
                             <InputLabel htmlFor="autores" value="Autores" />
 
@@ -240,7 +240,7 @@ export default function LivroForm({ livro,  modo = '' }: { livro: Livro, modo?: 
                         </div>
                     </div> 
                     <div className="w-full md:w-2/4">
-                        <div className="relative w-full">
+                        <div className="relative w-full pl-1">
 
                             <InputLabel htmlFor="assuntos" value="Assuntos" />
 
