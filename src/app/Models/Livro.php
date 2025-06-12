@@ -9,6 +9,8 @@ class Livro extends Model
     //
     protected $table = 'Livro';
 
+    protected $primaryKey = 'Codl';
+
     protected $fillable = [
         'Codl',
         'Titulo',
@@ -17,4 +19,16 @@ class Livro extends Model
         'AnoPublicacao',
         'Valor',
     ];
+
+    public function scopePorTexto($q, $nome)
+    {
+        if(!empty($nome)){
+            $q->where('Titulo','LIKE',"%{$nome}%")
+              ->orWhere('Editora','LIKE',"%{$nome}%")
+              ->orWhere('Edicao','LIKE',"%{$nome}%")
+              ->orWhere('AnoPublicacao',$nome)
+              ->orWhere('Valor',round(floatval($nome),2))
+              ;
+        }
+    }
 }
