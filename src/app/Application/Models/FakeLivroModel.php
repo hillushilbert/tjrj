@@ -31,8 +31,9 @@ class FakeLivroModel implements ILivroModel
 	{
 		$exists = false;
 		
+		if(count(self::getList()) > 0)
 		foreach(self::getList() as $position => $livroItem){
-			if($livroItem->getId() == $data->getId()){
+			if(is_object($livroItem) && $livroItem->getId() == $data->getId()){
 				$exists = true;
 				self::getList()->update($data,$position);
 			}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Application\Services\CreateLivroService;
 use App\Models\Livro;
 use App\Http\Requests\SaveLivroRequest;
 use App\Http\Resources\LivroResource;
@@ -15,6 +16,12 @@ use Illuminate\Support\Facades\Redirect;
 class LivroController extends Controller
 {
     //
+    protected CreateLivroService $create_livro_service;
+
+    public function __construct(CreateLivroService $create_livro_service)
+    {
+        $this->create_livro_service = $create_livro_service;
+    }
 
     /**
      * Display the user's profile form.
@@ -64,13 +71,15 @@ class LivroController extends Controller
         try
         {
             DB::beginTransaction();
-            $livro = Livro::create($request->validated());
 
-            $livro->autores()->detach();
-            $livro->autores()->attach($request->autores);
+            $this->create_livro_service->execute($request->validated());
+            // $livro = Livro::create($request->validated());
 
-            $livro->assuntos()->detach();
-            $livro->assuntos()->attach($request->assuntos);
+            // $livro->autores()->detach();
+            // $livro->autores()->attach($request->autores);
+
+            // $livro->assuntos()->detach();
+            // $livro->assuntos()->attach($request->assuntos);
 
             DB::commit();
         }

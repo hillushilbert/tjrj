@@ -2,9 +2,10 @@
 
 namespace App\Application\Entities;
 
+use Countable;
 use Iterator;
 
-class LivroLista implements Iterator
+class LivroLista implements Iterator, Countable
 {
 	private array $items = [];
 	private int $position = 0;
@@ -67,5 +68,10 @@ class LivroLista implements Iterator
 	public function rewind(): void
 	{
 		$this->position = 0;
+	}
+
+	public function count(): int
+	{
+		return count($this->items);
 	}
 }

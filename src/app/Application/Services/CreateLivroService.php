@@ -2,6 +2,7 @@
 
 namespace App\Application\Services;
 
+use App\Application\Adapters\RequestModelAdapter;
 use App\Application\Entities\Livro;
 use App\Application\Interfaces\ILivroModel;
 
@@ -14,8 +15,10 @@ class CreateLivroService
         $this->model = $model;
     }
 
-    public function execute(Livro $livro): Livro
+    public function execute(array $data): Livro
     {
+        $adapter = new RequestModelAdapter();
+        $livro = $adapter->convert($data);
         return $this->model->save($livro);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use App\Application\Entities\Livro;
 use App\Application\Exceptions\EntitiyOverflowSizeException;

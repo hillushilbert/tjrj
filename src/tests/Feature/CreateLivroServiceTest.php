@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Application\Entities\Livro;
 use App\Application\Services\CreateLivroService;
+use App\Models\Assunto;
+use App\Models\Autor;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -17,17 +19,33 @@ class CreateLivroServiceTest extends TestCase
     {
         $mock = $this->createMock(CreateLivroService::class);
 
+        $assunto = Assunto::create([
+            'Descricao' => 'Programação'
+        ]);
+
+        $autor = Autor::create([
+            'Nome' => ' Aurelio'
+        ]);
+
         $service = app()->make('App\Application\Services\CreateLivroService');
 
         $this->assertInstanceOf(CreateLivroService::class,$service);
 
-        $livro = new Livro([
-            'id' => 1,
-            'titulo' => 'Titulo'
-        ]);
+        
 
-        $res = $service->execute($livro);
+        $requestData = [
+            'Codl' => 1,
+            'Titulo' => 'Expressões Regulares',
+            'Editora' => 'Novatec',
+            'Edicao' => '2',
+            'AnoPublicacao' => '2018',
+            'Valor' => '77.88',
+            'assuntos' => [$assunto->codAs],
+            'autores' => [$autor->CodAu],
+        ];
 
-        $this->assertInstanceOf(Livro::class,$res);
+        $livro = $service->execute($requestData);
+
+        $this->assertInstanceOf(Livro::class,$livro);
     }
 }

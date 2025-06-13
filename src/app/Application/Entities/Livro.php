@@ -7,7 +7,7 @@ use App\Application\Exceptions\EntitiyOverflowSizeException;
 
 class Livro
 {
-    private int $id;
+    private ?int $id;
     private string $titulo;
     private string $editora;
     private int $edicao;
@@ -20,7 +20,7 @@ class Livro
     {
         $this->assuntoLista = new AssuntoLista();
         $this->autorLista = new AutorLista();
-
+        $this->id = null;
         foreach($data as $field => $value)
         {
             if($field == 'id'){
@@ -57,12 +57,12 @@ class Livro
         $this->id = $id;
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitulo(): string
+    public function getTitulo(): ?string
     {
         return $this->titulo;
     }
@@ -90,8 +90,8 @@ class Livro
 
     public function setEdicao(int $edicao)
     {
-        if($edicao > 0)
-            throw new EntitiyOverflowSizeException("A Edição deve ser superior a 0");
+        if($edicao <= 0)
+            throw new EntitiyOverflowSizeException("A Edição deve ser superior a 0, {$edicao}");
 
         $this->edicao = $edicao;
     }
@@ -103,7 +103,7 @@ class Livro
 
     public function setAnoPulicacao(int $ano_publicacao)
     {
-        if($ano_publicacao < (date('Y')+1))
+        if($ano_publicacao > (date('Y')+1))
             throw new EntitiyOverflowSizeException("O Ano de Publicação não pode ser superiro ao ano atual mais um");
 
         $this->ano_publicacao = $ano_publicacao;
@@ -116,7 +116,7 @@ class Livro
 
     public function setValor(float $valor)
     {
-        if($valor > 0)
+        if($valor <= 0)
             throw new EntitiyOverflowSizeException("O Valor do Livro deve ser superior a 0");
 
         $this->valor = $valor;
@@ -145,6 +145,16 @@ class Livro
     public function getAssuntoLista(): AssuntoLista
     {
         return $this->assuntoLista;
+    }
+
+    public function addAssunto(Assunto $assunto)
+    {
+        $this->assuntoLista->push($assunto);
+    }
+
+    public function addAutor(Autor $autor)
+    {
+        $this->autorLista->push($autor);
     }
 
 

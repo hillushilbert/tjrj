@@ -10,6 +10,22 @@ class Autor
     private int $id;
     private string $nome;
 
+    public function __construct(array $data = [])
+    {
+
+        foreach($data as $field => $value)
+        {
+            if($field == 'id'){
+                $this->setId($value);
+            }
+
+            if($field == 'nome'){
+                $this->setNome($value);
+            }
+            
+        }
+    }
+
     public function setId(int $id)
     {
         if($id <= 0)

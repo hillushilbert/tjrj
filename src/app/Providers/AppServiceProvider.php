@@ -24,10 +24,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Vite::prefetch(concurrency: 3);
-
     
         if (app()->environment('testing')) {
-            $this->app->bind(ILivroModel::class, FakeLivroModel::class);
+            $this->app->bind(ILivroModel::class, LivroModel::class);
         } else {
             $this->app->bind(ILivroModel::class, LivroModel::class);
         }
