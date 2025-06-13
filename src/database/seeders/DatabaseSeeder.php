@@ -22,5 +22,12 @@ class DatabaseSeeder extends Seeder
         User::updateOrCreate([
             'email' => 'admin@tj.rj.gov.br'
         ],$dataUser);
+
+        
+        $this->call([
+            AutorSeeder::class,
+            AssuntoSeeder::class,
+            LivroSeeder::class,
+        ]);
     }
 }
