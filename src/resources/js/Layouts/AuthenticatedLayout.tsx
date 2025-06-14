@@ -1,6 +1,7 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
+import NormalLink from '@/Components/NormalLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
@@ -51,6 +52,12 @@ export default function Authenticated({
                                 <NavLink href={route('livros.index')} active={route().current('livros.index')}>
                                     Livros
                                 </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NormalLink href={route('livro-autor.report')}>
+                                    Relatório
+                                </NormalLink>
                             </div>
                         </div>
 

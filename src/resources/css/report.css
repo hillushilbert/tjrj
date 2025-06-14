@@ -1,0 +1,223 @@
+
+.content {
+    margin-top:500px;
+}
+
+table, p , div, span {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+}
+
+table.header_1 {
+    width: 800px;
+}
+
+table.header_1 td {
+    font-size: 18px;
+}
+
+table.dados_autor {
+    width: 800px;
+    border: 0px solid #000;
+    border-collapse: collapse;
+}
+
+td.dados_autor_primeira_linha{
+    padding-top: 10px;
+    border-bottom: 1px solid #000;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+table.dados_livro {
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+table.dados_livro td {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    padding: 1px 5px;
+}
+table.dados_livro  th {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    font-weight: bold;
+}
+
+td.dados_livro_titulo{
+    width: 30%;
+}
+
+td.dados_livro_editora,
+td.dados_livro_edicao,
+td.dados_livro_assuntos
+{
+    width: 20%;
+}
+
+td.dados_livro_valor{
+    width: 10%;
+    text-align: right;
+}
+
+
+
+table.proposta {
+    margin-top: 10px;
+    width: 800px;
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+td.proposta__ultima_coluna {
+    width: 50%;
+}
+
+.proposta__valor_total {
+    border-top: 1px solid #000;
+}
+
+
+table.proposta th {
+    text-align: left;
+}
+
+table.alienacao {
+    margin-top: 2px;
+    width: 800px;
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+th.alientacao_label {
+    width: 75px ;
+}
+table.alienacao th {
+    text-align: left;
+}
+
+
+table.forma_pgto {
+    margin-top: 10px;
+    width: 800px;
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+table.forma_pgto tr td {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    padding: 1px 5px;
+}
+table.forma_pgto tr th {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    font-weight: bold;
+    text-align: left;
+    padding: 1px 5px;
+}
+
+table.financiamento {
+    margin-top: 1px;
+    width: 800px;
+    border: 1px solid #000;
+    border-collapse: collapse; 
+}
+table.financiamento tr td {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    padding: 1px 5px;
+}
+table.financiamento tr th {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    font-weight: bold;
+    text-align: left;
+    padding: 1px 5px;
+}
+
+table.fni {
+    margin-top: 10px;
+    width: 800px;
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+table.fni tr td {
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+table.fni tr th {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    font-weight: bold;
+    text-align: left;
+}
+
+div.observacoes {
+    margin-top: 10px;
+    width: 788px;
+    border: 1px solid #000;
+    padding: 5px;
+    font-size: 10px;
+}
+
+div.observacoes p {
+    font-size: 10px;
+    margin: 4px 0;
+}
+
+div.atendendo_a_lei {
+    margin-top: 2px;
+    width: 798px;
+    border: 1px solid #000;
+    font-size: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 2px;
+}
+
+ul.atendendo_a_lei_ul {
+    width: 798px;
+    /* padding-left: 0;
+    list-style-type: none; */
+    list-style: none outside none; margin:0; padding: 0;
+}
+
+li.atendendo_a_lei_li {
+    /* list-style: none;
+    display: inline-block; */
+    float: left; margin: 0 10px; 
+    width: 360px;
+    font-size: 9px;
+}
+
+table.assinaturas {
+    margin-top: 10px;
+    width: 800px;
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+
+table.assinaturas  tr th {
+    border: 1px solid #000;
+    padding: 4px;
+    border-collapse: collapse;
+    font-weight: bold;
+    text-align: center;
+    height: 60px;
+    vertical-align: top;
+}
+
+table.footer {
+    margin-top: 1px;
+    width: 800px;
+    border: 0px solid #000;
+    border-collapse: collapse; 
+}
+
+.footer_primeira_linha {
+    border-top: 1px solid #000;
+    padding-top: 20px;
+}
+
+.alinhar_direita {
+    text-align: right !important;
+}

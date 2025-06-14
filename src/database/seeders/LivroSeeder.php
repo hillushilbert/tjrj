@@ -43,5 +43,20 @@ class LivroSeeder extends Seeder
         $livro2->assuntos()->attach(2);
         $livro2->autores()->detach(2);
         $livro2->autores()->attach(2);
+
+        $livro3 = Livro::updateOrCreate([
+            'Codl' => 3
+        ],[
+            'Titulo' => 'Fundação: 1',
+            'Editora' => 'Aleph',
+            'Edicao' => 3,
+            'AnoPublicacao' => '1951',
+            'Valor' => '52.25',
+        ]);
+
+        $livro3->assuntos()->detach(2);
+        $livro3->assuntos()->attach(2);
+        $livro3->autores()->detach(2);
+        $livro3->autores()->attach(2);
     }
 }

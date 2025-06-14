@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AssuntoController;
 use App\Http\Controllers\AutorController;
+use App\Http\Controllers\LivroAutorReportController;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/autores/autocomplete/list', [AutorController::class, 'autocomplete'])->name('autores.autocomplete.list');
     Route::get('/assuntos/autocomplete/list', [AssuntoController::class, 'autocomplete'])->name('assuntos.autocomplete.list');
+    Route::get('/livro-autor/report', [LivroAutorReportController::class, 'index'])->name('livro-autor.report');
 });
 
 require __DIR__.'/auth.php';
